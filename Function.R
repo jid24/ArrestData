@@ -22,4 +22,4 @@ for(n in 1:4805){
   code[i]<-substr(arrest$OFFENSES[n],1,y6[n]-1)
 }
 
-arrest<-data.frame(arrest$AGE,arrest$GENDER,arrest$OFFENSES,code)
+arrest<-data.frame(arrest$AGE,arrest$GENDER,arrest$RACE,arrest$OFFENSES,code)
