@@ -15,9 +15,6 @@ dat2<-dat[-idx,]
 arrest<-rbind(dat1,dat2)
 
 y6<-regexpr(" ",arrest$OFFENSES)
-
-substr(arrest$OFFENSES[7],1,y6[7])
-
 code<-NULL
 i=0
 for(n in 1:4805){
