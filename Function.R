@@ -21,7 +21,7 @@ for(n in 1:4805){
   i=i+1
   code[i]<-substr(arrest$OFFENSES[n],1,y6[n]-1)
 }
-arrest<-data.frame(arrest$AGE,arrest$GENDER,arrest$OFFENSES,code)
+arrest<-data.frame(arrest$AGE,arrest$GENDER,arrest$OFFENSES,arrest$RACE,code)
 
 y1<-regexpr("[(]",arrest$code)
 idx1<-which(y1>0)
@@ -49,7 +49,9 @@ arrest1$code<-code2
 arrest2<-arrest[-idx2,]
 arrest<-rbind(arrest1,arrest2)
 
-a1<-c(2701,13,903,2702,9501,9015,1543,3925,2706,3929)
-idx3<-which(arrest$code=="2701"|"13"|"903"|"2702"|"9501"|"9015"|"1543"|"3925"|"2706"|"3929")
-idx3<-which(arrest$code==2701|13|903|2702|9501|9015|1543|3925|2706|3929)
+sort(table(arrest$code), decreasing = TRUE)[1:10]
+idx3<-which(arrest$code==2701|arrest$code==13|arrest$code==903|arrest$code==2702|arrest$code==9501|arrest$code==9015|arrest$code==1543|arrest$code==3925|arrest$code==2706|arrest$code==3929)
+ArrestTopTen<-arrest[idx3,]
 
+idx4<-which(arrest$code==2701|arrest$code==13|arrest$code==903|arrest$code==2702|arrest$code==9501)
+ArrestTopFive<-arrest[idx4,]
