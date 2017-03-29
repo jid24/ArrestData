@@ -1,6 +1,5 @@
 #Cleaning Data
 rm(list=ls())
-setwd("C:/Users/dengj/Desktop/2016-2017 Spring/R/data")
 dat=read.csv("ArrestData.csv")
 y<-regexpr("/",dat$OFFENSES)
 idx<-which(y>0)
@@ -114,3 +113,20 @@ plotbyrace<-function(x){
 plotbyrace(ArrestTopFive)
 plotbyrace(ArrestTopTen)
 
+###########
+library(lubridate)
+dt=read.csv("ArrestData.csv")
+time<-as.POSIXct(dt$ARRESTTIME)
+time<-year(time)
+arrest<-cbind(arrest,time)
+
+a<-ggplot(data=ArrestTopFive,aes(x=ArrestTopFive$arrest.RACE,fill=ArrestTopFive$time))
+a+geom_bar(stat="count",width = .5)+facet_grid(.~ArrestTopFive$code)+
+  ylab("Number of Crime")
+
+############
+library(reshape2)
+df<-melt(ArrestTopFive)
+b<-ggplot(data=df,aes(x=ArrestTopFive$arrest.RACE,fill=ArrestTopFive$time))
+b+geom_bar(stat="identity",width = .5)+facet_grid(.~ArrestTopFive$code)+
+  ylab("Number of Crime")
