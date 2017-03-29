@@ -10,7 +10,10 @@ plotbygender<-function(x){
           col=c("#E41A1C","#377EB8"),border="white",ylim=c(0,600),
           ylab="Number of Crime",main="Top 5 Crime among Gender")
 }
-
+#######Test
+plotbygender(ArrestTopFive)
+plotbygender(ArrestTopTen)
+###############
 
 plotbyage<-function(x){
   five<-x
@@ -25,4 +28,8 @@ plotbyage<-function(x){
   barplot(as.matrix(t(z)),beside=T,legend.text =c("Minor","Puber","Old"),args.legend = list(bty="n",horiz=T),
           col=brewer.pal(3,"Set2"),border="white",ylim=c(0,730),
           ylab="Number of Crime",main="Top 5 Crime among Age")
-  }
+}
+
+############Test
+plotbyage<-(ArrestTopFive)
+plotbyage<-(ArrestTopTen)
