@@ -17,7 +17,15 @@ Goal: Integrating the clean data function and graph function into "main.R", test
 
 Data cleaning functions:  
 #Jinshi Deng
-1. 
+1. First extract the reason for each offender that why was he or she arrested. The method used here is to locate “/” in each offense column by using “regexpr”. Then created an index to collect cases sentenced for more than once. Then extracted the first crime type for that guy.
+For example, “9501 Bench Warrant / 2709(a)(1) Harassment by Physical Contact, or Attempts or Threats” should be modified as “9501 Bench Warrant”.
+
+2. Second, extract just the number in those offenses also by using “regexpr”. In this step, located “space” in each offense column is used. And then using the same method mentioned above.
+For example, “9501 Bench Warrant” should be transferred as “9501”.
+3. Third, deal with those particular cases by using the same method. For example, for codes like “13(a)”, “5902(a)”, located “(”, then used “regexpr”. Then is should look like “13” or “5902”.
+4. Created a new data frame which only includes age, gender, race, offense, and code.
+5. Finally, based on our topic, extract top five or top ten arrest code.
+
 
 Graphing functions:  
 #Vincent Fan
