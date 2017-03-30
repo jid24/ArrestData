@@ -107,11 +107,10 @@ plotbyrace<-function(x){
   z<-data.frame(a,b,c)
   barplot(as.matrix(t(z)),beside=T,legend.text =c("Black","White","Other"),args.legend = list(bty="n",horiz=T),
           col=brewer.pal(3,"Paired"),border="white",ylim=c(0,550),
-          ylab="Number of Crime",main="Top 5 Crime among Race")
+          ylab="Number of Crime",main="Top 5 Crimes among Race")
 }
 ###########Test
 plotbyrace(ArrestTopFive)
-plotbyrace(ArrestTopTen)
 
 ###########
 library(lubridate)
@@ -120,13 +119,10 @@ time<-as.POSIXct(dt$ARRESTTIME)
 time<-year(time)
 arrest<-cbind(arrest,time)
 
-a<-ggplot(data=ArrestTopFive,aes(x=ArrestTopFive$arrest.RACE,fill=ArrestTopFive$time))
+a<-ggplot(data=ArrestTopFive,aes(x=ArrestTopFive$arrest.AGE,fill=ArrestTopFive$arrest.GENDER))
 a+geom_bar(stat="count",width = .5)+facet_grid(.~ArrestTopFive$code)+
-  ylab("Number of Crime")
+  ylab("Number of Crime")+
+  xlab("Age")+
+  ggtitle("Top 5 Crimes among age")+
+  guides(fill=guide_legend(title="Gender"))
 
-############
-library(reshape2)
-df<-melt(ArrestTopFive)
-b<-ggplot(data=df,aes(x=ArrestTopFive$arrest.RACE,fill=ArrestTopFive$time))
-b+geom_bar(stat="identity",width = .5)+facet_grid(.~ArrestTopFive$code)+
-  ylab("Number of Crime")
