@@ -115,9 +115,6 @@ plotbyrace(ArrestTopFive)
 ###########
 library(lubridate)
 dt=read.csv("ArrestData.csv")
-time<-as.POSIXct(dt$ARRESTTIME)
-time<-year(time)
-arrest<-cbind(arrest,time)
 
 a<-ggplot(data=ArrestTopFive,aes(x=ArrestTopFive$arrest.AGE,fill=ArrestTopFive$arrest.GENDER))
 a+geom_bar(stat="count",width = .5)+facet_grid(.~ArrestTopFive$code)+
